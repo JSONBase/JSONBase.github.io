@@ -1,0 +1,125 @@
+<?php
+session_start();
+session_save_path();
+?>
+<html>
+<head>
+<meta charset ="utf-8"/>
+<title>
+Управление базой данных
+</title>
+<style>
+.table-up
+{
+background:blue;
+width:100%;
+height:70px;
+}
+.data
+{
+	width:200px;
+	height:200px;
+	overflow:auto;
+	border-radius:14px;
+	background:gray;
+	width:100%;
+	height:250px;
+	}
+
+</style>
+</head>
+<body>
+<div class="table-up">
+	<a href="#" target="_blank">
+<img src="https://sun9-74.userapi.com/impg/bU6OsVgpsFYM8gvVx7hfe4quQSpT_INDPwR2NA/qjS6dWUJ-3U.jpg?size=380x490&quality=96&sign=200d3258b9efa9ddc5416967237c1b00&type=album"width="80px"height="60px"></img><font color="white">JSONBase</font>
+</a>
+</div><br>
+Управление :<?php echo $_SESSION['project'] ?>
+<br>
+	<form action="" method="post">
+		
+		
+	<input type="text" name="key1" placeholder="Ключ1"><br>
+		<input type="text" name="value1" placeholder="Значение1"><br>
+	<input type="text" name="key2" placeholder="Ключ2"><br>
+	<input type="text" name="value2" placeholder="Значение2"><br>
+		<input type="text" name="key3" placeholder="Ключ3"><br>
+			<input type="text" name="value3" placeholder="Значение3"><br>
+				<input type="submit" style="background:blue;border-radius:10px;color:white;"value="Отправить">
+	</form>
+	<?php
+	if(isset($_POST['key1'])&&isset($_POST['value1'])&& isset($_POST['key2'])&&isset($_POST['value2'])&&isset($_POST["key3"])&&isset($_POST['value3']))
+	{
+		$text = file_get_contents($_SESSION['folder']."/".$_SESSION['project']);
+		
+		$text.= "[{".$_POST['key1'].":".$_POST['value1'].",".$_POST['key2'].":".$_POST['value2'].",".$_POST['key3'].":".$_POST['value3'].",}]";
+		
+		$json = json_encode($text);
+		
+		file_put_contents($_SESSION['folder']."/".$_SESSION['project'],$json);
+		$file = $_SESSION['folder']."/".$_SESSION['project'];
+		 if(!file_exists($file)) echo "Файл  не найден";
+   // теперь определяем размер файла в несколько шагов
+  $filesize = filesize($file);
+   // Если размер больше 1 Кб
+   if($filesize > 1024)
+   {
+       $filesize = ($filesize/1024);
+       // Если размер файла больше Килобайта
+       // то лучше отобразить его в Мегабайтах. Пересчитываем в Мб
+       if($filesize > 1024)
+       {
+            $filesize = ($filesize/1024);
+           // А уж если файл больше 1 Мегабайта, то проверяем
+           // Не больше ли он 1 Гигабайта
+           if($filesize > 1024)
+           {
+               $filesize = ($filesize/1024);
+               $filesize = round($filesize, 1);
+               echo $filesize." ГБ";       
+           }
+           else
+           {
+               $filesize = round($filesize, 1);
+               echo $filesize." MБ";   
+           }       
+       }
+       else
+       {
+           $filesize = round($filesize, 1);
+           echo $filesize." Кб";   
+       }  
+   }
+   else
+   {
+       $filesize = round($filesize, 1);
+       echo $filesize." байт";   
+   }
+}
+		
+	?>
+	
+	данные:<br>
+		<div class="data">
+			<?php
+			echo file_get_contents($_SESSION['folder']."/".$_SESSION['project']);
+			?>
+			</div>
+			<form action = "" method = "post">
+			<input type ="submit" name = "delete" value = "Удалить данные"style="background:blue;border-radius:10px;color:white;">
+			</form>
+			<?php
+			if (isset($_POST['delete']))
+			{
+			unlink(	$_SESSION['folder']."/".$_SESSION['project']);
+			unlink(	$_SESSION['folder']);
+			session_destroy();
+			echo"<script> location.href = 'index.html'; </script>";
+			}
+			
+			?>
+			<br>
+			<a href = "developer.html">Разработчикам</a><br>
+			
+			<a href = "storage.html">Хранилище фотографий</a>
+</body>

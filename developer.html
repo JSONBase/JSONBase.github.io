@@ -1,0 +1,33 @@
+<html>
+<head>
+<title>
+Разработчикам[Методы API]
+</title>
+<meta charset="utf-8"/>
+<style>
+	table
+	{
+		border:1px solid black;
+		border-radius:10px;
+		}
+	</style>
+
+</head>
+<body>
+
+<a href = "developer.html?method=create_file">Метод создания проекта с данными</a><br>
+<a href ="developer.html?method=get_file">Метод получения данных</a><br>
+<?php
+if(isset($_GET['method'])&&$_GET['method']=="create_file")
+{
+echo"<h1>Метод создания проекта и данных в нем</h1><br><table><tbody><tr><td>Переменные</td><td>Значение</td></tr><tr><td>key1</td><td>Первая переменная<ключ> данных</td></tr><tr><td>value1</td><td>значение первой переменной<ключа></td></tr><tr><td>key2</td><td>Вторая переменная<ключ> данных</td></tr><tr><td>value2</td><td>Значение второй переменной</td></tr><tr><td>key3</td><td>Третья переменная<ключ> данных</td></tr><tr><td>value3</td><td>Значение третьей переменной<ключа></td></tr><tr><td>project</td><td>Имя вашего нового проекта</td></tr></tbody></table>";
+}
+if (isset($_GET['method'])&&$_GET['method']=="get_file")
+{
+	echo"<h1>Метод получения данных из проекта</h1><br><table><tbody><tr><td>Переменные</td><td>Значение</td></tr><tr><td>project</td><td>Имя вашего проекта из которого вы хотите получить данные</td></tr></tbody></table>";
+	}
+?>
+	<br>
+		
+		<a href ="mailto:horrorgame430@gmail.com">Связаться с разработчиком</a>
+</body>

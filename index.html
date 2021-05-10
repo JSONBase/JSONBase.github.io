@@ -1,0 +1,49 @@
+<html>
+<head>
+<title>
+JSONBase Меню
+</title>
+<meta charset = "utf-8"/>
+<link rel="shortcut icon" href="https://files.000webhost.com/handler.php?action=download?action=download&path=%2Fpublic_html%2FqjS6dWUJ-3U.jpg" type="image/png">
+</head>
+<body>
+<center>
+	<form action="project.html" method="get" id = "api">
+		<button type='button' onclick= "input()" style= "background:blue;border-radius:10px; color:white;">Создать файл-проект</button>
+		<br><script>
+			function input()
+		{
+			var named = document.createElement("input");
+			named.name="project";
+			named.placeholder="Введите имя проекта";
+			var btn=document.createElement("input");
+			btn.type="submit";
+			btn.value="Создать";
+			document.getElementById("api").appendChild(named);
+			document.getElementById("api").appendChild(btn);
+}
+			
+			</script>
+			<br>
+		<label>
+id:<input type="text" id="id-project" name="project_id" disabled><br>
+		</label>
+	</form>
+	<script>
+		function getRandomInt(min, max) {
+  document.getElementById("id-project").value= Math.floor(Math.random() * (max - min)) + min;
+}
+
+getRandomInt(1, 999);
+
+		</script>
+		<style>
+			div
+			{
+				display:none;
+				}
+			</style>
+			
+		
+</body>
+</center>

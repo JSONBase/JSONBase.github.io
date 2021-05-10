@@ -1,0 +1,33 @@
+<?php
+session_start();
+?>
+<?php
+echo "<html> <head><title>creating</title></head>";
+
+echo"
+	<script>
+		
+			
+			
+			
+			
+		document.location.href='manager.html';
+	
+		
+		</script>";
+		
+if(isset($_GET['project']))
+{
+$path=mkdir($_GET['project']);
+$storage = mkdir ($_GET['project']."-storage");
+$tmp = mkdir ($_GET['project']."-tmp");
+file_put_contents($_GET['project']."/".$_GET['project'].".json","");
+$_SESSION['path']=$path;
+$_SESSION['folder'] = $_GET['project'];
+$_SESSION['project']=$_GET['project'].".json";
+$_SESSION['storage']=$_GET['project']."-storage";
+$_SESSION['tmp']=$_GET['project']."-tmp";
+var_dump($_SESSION['project']);
+exit;
+}
+?>

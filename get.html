@@ -1,0 +1,10 @@
+<?php
+if(isset($_GET['project'])) 
+{
+	ini_set('memory_limit', '100M');
+$json = json_encode(file_get_contents($_GET['project']."/".$_GET['project'].".json"));
+echo file_get_contents($_GET['project']."/".$_GET['project'].".json");
+
+
+}
+?>

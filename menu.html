@@ -1,0 +1,43 @@
+<html>
+<head>
+<title>
+JSONBase Меню
+</title>
+</head>
+<body>
+<center>
+	<form action="project.php" method="get">
+		<button type='button" onclick= "input()" style= "background:blue;border-radius:10px; color:white,">Создать файл-проект</button>
+		<br><script>
+			function input()
+		{
+			var named = document.createElement("input");
+			named.name="project";
+			named.placeholder="Введите имя проекта";
+			var btn=document.createElement("input");
+			btn.type="submit";
+			btn.value="Создать";
+}
+			
+			</script>
+			<br>
+		<label>
+id:<input type="text" id="id-project" name="project_id" dissabled>
+		</label></form>
+	</center>
+	<script>
+		function getRandomInt(min, max) {
+  document.getElementById("id-project").value= Math.floor(Math.random() * (max - min)) + min;
+}
+
+getRandomInt(1, 999);
+
+		</script>
+		<style>
+			div
+			{
+				display:none;
+				}
+			</style>
+		
+</body>
